@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un produit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>Modifier un produit</h2>
+
+<form action="#" th:action="@{/modifierProduit}" th:object="${produit}" method="post">
+    <input type="hidden" th:field="*{id}"> <!-- Champ caché pour l'ID du produit -->
+
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" th:field="*{nom}" required><br>
+
+    <label for="marque">Marque :</label>
+    <select id="marque" name="marque" th:field="*{marque.id}" required>
+        <option th:each="uneMarque : ${marques}" th:value="${uneMarque.id}" th:text="${uneMarque.nom}"></option>
+    </select><br>
+
+    <label for="categories">Catégories :</label>
+    <select id="categories" name="categories" th:field="*{categories}" multiple="multiple" required>
+        <option th:each="uneCategorie : ${categories}" th:value="${uneCategorie.id}" th:text="${uneCategorie.nom}"></option>
+    </select><br>
+
+    <label for="description">Description :</label>
+    <textarea id="description" name="description" th:field="*{description}" required></textarea><br>
+
+    <label for="prix">Prix :</label>
+    <input type="number" id="prix" name="prix" th:field="*{prix}" required><br>
+
+    <label for="quantiteStock">Quantité en stock :</label>
+    <input type="number" id="quantiteStock" name="quantiteStock" th:field="*{quantiteStock}" required><br>
+
+    <button type="submit">Modifier</button>
+</form>
+
+</body>
+</html>

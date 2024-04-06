@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer un produit</title>
+</head>
+<body>
+
+<h2>Êtes-vous sûr de vouloir supprimer ce produit ?</h2>
+
+<form action="#" th:action="@{/supprimerProduit}" method="post">
+    <input type="hidden" name="id" th:value="${productWithDetails.id}"> <!-- Champ caché pour l'ID du produit -->
+    <p>Nom : <span th:text="${productWithDetails.nom}"></span></p>
+    <p>Description : <span th:text="${productWithDetails.description}"></span></p>
+    <p>Prix : <span th:text="${productWithDetails.prix}"></span></p>
+    <p>Quantité en stock : <span th:text="${productWithDetails.quantiteStock}"></span></p>
+
+    <button type="submit">Confirmer la suppression</button>
+</form>
+
+</body>
+</html>

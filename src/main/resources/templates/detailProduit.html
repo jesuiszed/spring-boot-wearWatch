@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p th:text="${productWithDetails.getNom()}" ></p>
+<p th:text="${productWithDetails.getDescription()}" ></p>
+<p th:text="${productWithDetails.getPrix()}" ></p>
+<p th:text="${productWithDetails.getQuantiteStock()}" ></p>
+
+<a th:href="@{/index}" >Index</a>
+
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des produits</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<h2>Liste des montres</h2>
+
+<a href="/ajouterProduit">Ajouter un produit</a> <!-- Lien pour ajouter un produit -->
+
+</br>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Marque</th>
+        <th>Categorie</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th>Quantité en stock</th>
+        <th>Actions</th> <!-- Ajout d'une colonne pour les actions -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="montre:${listMontres}">
+        <td><a th:text="${montre.getId()}"></a></td>
+        <td th:text="${montre.getNom()}"></td>
+        <td>
+            <span  th:each = "marque : ${montre.getMarque()}" th:text="${montre.getNom()}"></span>
+        </td>
+        <td>
+            <span th:each="categorie: ${montre.getCategories()}" th:text="${categorie.getNom()}"></span>
+        </td>
+        <td th:text="${montre.getDescription()}"></td>
+        <td th:text="${montre.getPrix()}"></td>
+        <td th:text="${montre.getQuantiteStock()}"></td>
+        <td>
+            <a th:href="@{/modifierProduit(id=${montre.getId()})}">Modifier</a> | <!-- Lien pour modifier -->
+            <a th:href="@{/supprimerProduit(id=${montre.getId()})}" >Supprimer</a> <!-- Lien pour supprimer -->
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

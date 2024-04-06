@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>Liste des categories</h2>
+
+<!-- <a href="/ajouterProduit">Ajouter un produit</a>Lien pour ajouter un produit -->
+
+</br>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Actions</th> <!-- Ajout d'une colonne pour les actions -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="categories:${listCategories}">
+        <td><a th:text="${categories.getId()}"></a></td>
+        <td th:text="${categories.getNom()}"></td>
+        <td th:text="${categories.getDescription()}"></td>
+        <td>
+            <a th:href="@{/modifierProduit(id=${montre.getId()})}">Modifier</a> | <!-- Lien pour modifier -->
+            <a th:href="@{/supprimerProduit(id=${montre.getId()})}" >Supprimer</a> <!-- Lien pour supprimer -->
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

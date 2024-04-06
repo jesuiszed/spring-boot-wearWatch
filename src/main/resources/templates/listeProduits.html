@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des produits</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        /* Styles pour la barre de navigation */
+        .navbar {
+            background-color: #343a40; /* Couleur de fond */
+            padding: 10px; /* Espacement interne */
+        }
+
+        .navbar a {
+            color: white; /* Couleur du texte */
+            text-decoration: none; /* Pas de soulignement */
+            margin-right: 20px; /* Marge à droite entre les liens */
+        }
+
+        .navbar a:hover {
+            color: #ffc107; /* Couleur du texte au survol */
+        }
+
+        /* Styles pour le contenu de la page */
+        .content {
+            margin: 20px; /* Marge autour du contenu */
+        }
+
+        .produit {
+            background-color: #f8f9fa; /* Couleur de fond */
+            padding: 10px; /* Espacement interne */
+            margin-bottom: 20px; /* Marge en bas entre les produits */
+        }
+
+        .produit h3 {
+            color: #007bff; /* Couleur du titre */
+        }
+
+        .produit p {
+            margin-top: 5px; /* Marge en haut entre les paragraphes */
+            color: #6c757d; /* Couleur du texte */
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Barre de navigation -->
+<div class="navbar">
+    <a href="#">WearWatch</a>
+    <a href="#">Accueil</a>
+    <a href="#">Categorie</a>
+    <a href="#">Nouveautes</a>
+    <a href="#">Panier</a>
+    <a href="#">Mon Compte</a>
+</div>
+
+<!-- Contenu de la page -->
+<div class="content">
+    <h2>Nos nouveautes</h2>
+
+    <!-- Boucle sur les produits pour afficher chaque produit dans un bloc -->
+    <div th:each="produit : ${listeProduits}" class="produit">
+        <h3 th:text="${produit.getNom()}"></h3> <!-- Nom du produit -->
+        <p th:text="${produit.getDescription()}"></p> <!-- Description du produit -->
+        <p>Prix : <span th:text="${produit.getPrix()}"></span> €</p> <!-- Prix du produit -->
+        <p>Quantité en stock : <span th:text="${produit.getQuantiteStock()}"></span></p> <!-- Quantité en stock du produit -->
+    </div>
+    <!-- Fin de la boucle -->
+</div>
+
+</body>
+</html>
